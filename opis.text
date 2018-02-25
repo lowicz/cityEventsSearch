@@ -1,0 +1,31 @@
+Program obsłużony za pomocą standarowych opcji i argumentów
+Flaga -d <date> walidowana na zgodność z formatem YYYY-MM-DD
+Flaga -s <street> walidowana na co najmniej 4 znaki
+
+Program pobiera za pomocą funkcji xml_download() plik xml ze strony Urzędu Miasta.
+Użyta została biblioteka requests
+Powyższa funkcja konwertuje string z xml na obiekt Element z biblioteki ElementTree
+
+Funkcja xml_to_cityevents wchodzi kolejno w taki "data", "komunikaty_i_ogloszenia", "items"
+dla każdego z tagów "items" funkcja tworzy obiekt typu CityEvent z atrybutami 
+event_date i event_description odpowiednie na podstawie nw_to_date oraz nw_text
+Wynikiem działania tej funkcji jest lista obiektów CityEvents
+
+Funkcja search_events jako argument przyjmuje liste obiektów cityevents oraz pattern, po którym szuka
+Może to być albo data, albo ulica, albo jedno i drugie.
+W zależności jakie parametry zostały podane, funkcja sprawdza dopasowanie wydarzeń,
+za pomocą metody description_search obiektu CityEvent lub dopasowanie do jego atrybuty event_date
+
+skłądając powyższe do kupy, w funkcji main wywoływany jest następujący kod:
+
+    xml_element = xml_download(XML_PATH)
+    if xml_element is False:
+        sys.exit()
+    else:
+        lista = search_events(xml_to_cityevents(xml_element), date, street)
+        if len(lista) == 0:
+            print RED_COLOR_TAG + "Nothing found." + CLOSE_TAG
+            sys.exit()
+        else:
+            for i in lista:
+                i.print_event()
