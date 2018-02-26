@@ -29,3 +29,15 @@ skłądając powyższe do kupy, w funkcji main wywoływany jest następujący ko
         else:
             for i in lista:
                 i.print_event()
+
+Dzień dobry,
+
+projekt działa, ale na tle innych otrzymanych projektów ma ograniczenia, za które nie może dostać wyższą ocenę.
+
+Proponuję w najbliższym czasie wprowadzić ulepszenia (lub niektóre z nich):
+- wyszukiwanie można robić na podstawie dowolnej daty z zakresu (obecnie wyszukiwanie jest tylko wg.  końcowej daty) + 10 pkt
+- program sam rozpoznaje czy wpisana jest nazwa ulicy czy wpisana jest data. Nie musi mieć danych jednocześnie i daty i ulicy (wystarczy coś z tego) +15 pkt
+- program musi pytać u użytkownika o dane (input), a nie z wiersza poleceń +5 pkt
+- program może szukać wg. nazwy ulicy wpisanej z małej litery +5 pkt
+
+Proszę o informację, czy ulepszenia zostaną wprowadzone do 1 marca.
