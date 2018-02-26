@@ -1,27 +1,26 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import re
-
-BLUE_COLOR_TAG = "\x1B[34;40m"
-BOLD_TAG = "\x1B[1m"
-CLOSE_TAG = "\x1B[0m"
+from datetime import datetime
 
 
 class CityEvent(object):
-    def __init__(self, event_date, event_description):
-        prog = re.compile('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
-        if prog.match(event_date):
-            self.event_date = event_date
+    def __init__(self, event_start_date, event_end_date, event_description):
+            self.event_start_date = datetime.strptime(event_start_date,
+                                                      '%Y-%m-%d')
+            self.event_end_date = datetime.strptime(event_end_date, '%Y-%m-%d')
             self.event_description = event_description
-        else:
-            raise RuntimeError('Date must be in YYYY-MM-DD format')
 
     def description_search(self, pattern):
         return pattern.lower() in self.event_description.lower()
 
+    def date_search(self, event_date):
+        if self.event_start_date <= event_date <= self.event_end_date:
+            return True
+        else:
+            return False
+
     def print_event(self):
-        print BLUE_COLOR_TAG + BOLD_TAG + "Event Date: " \
-            + CLOSE_TAG + str(self.event_date)
-        print BLUE_COLOR_TAG + BOLD_TAG + "Event Description: " \
-            + CLOSE_TAG + str(self.event_description)
+        print("Event Start Date: " + self.event_start_date.strftime('%Y-%m-%d')
+              + " Event End Date: " + self.event_end_date.strftime('%Y-%m-%d'))
+        print("Event Description: " + str(self.event_description))
