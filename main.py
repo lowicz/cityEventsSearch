@@ -23,6 +23,7 @@ ERROR_TEXT = RED_COLOR_TAG + BOLD_TAG + "error: " + CLOSE_TAG
 def xml_download(XML_PATH):
     # Download XML Element from PATH
     # Returns Element object or False if something goes wron
+    #
 
     print("Downloading xml file...")
     s = requests.Session()
