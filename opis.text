@@ -7,7 +7,7 @@ Użyta została biblioteka requests
 Powyższa funkcja konwertuje string z xml na obiekt Element z biblioteki ElementTree
 
 Funkcja xml_to_cityevents wchodzi kolejno w taki "data", "komunikaty_i_ogloszenia", "items"
-dla każdego z tagów "items" funkcja tworzy obiekt typu CityEvent z atrybutami 
+dla każdego z tagów "items" funkcja tworzy obiekt typu CityEvent z atrybutami
 event_date i event_description odpowiednie na podstawie nw_to_date oraz nw_text
 Wynikiem działania tej funkcji jest lista obiektów CityEvents
 
